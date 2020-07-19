@@ -1,0 +1,11 @@
+#! /bin/bash
+
+BGICO="^b#262626^"
+BGVAL="^b#424242^"
+FG="^c#ffffff^"
+SCM_NORM="^d^"
+
+CLOCK=""
+TIME=$(date +"%I:%M %P")
+
+echo -e "$FG$BGICO $CLOCK $BGVAL $TIME $SCM_NORM"

@@ -1,0 +1,38 @@
+#!/bin/bash
+
+BGICO="^b#262626^"
+BGVAL="^b#424242^"
+BGTMP="^b#000000^"
+FG="^c#ffffff^"
+SCM_NORM="^d^"
+BAT0=$(cat /sys/class/power_supply/BAT0/capacity)
+BAT1=$(cat /sys/class/power_supply/BAT1/capacity)
+BAT0STATUS=$(cat /sys/class/power_supply/BAT0/status)
+BAT1STATUS=$(cat /sys/class/power_supply/BAT1/status)
+BATFULL=""
+BAT50=""
+BAT050=""
+BAT20=""
+BATCRTCL=""
+BATCHARGE=""
+
+if [ $BAT1STATUS == "Charging" ] || [ $BAT0STATUS == "Charging" ]
+then
+    echo -e "$FG$BGICO $BATCHARGE $BGVAL $BAT0‧$BAT1 $SCM_NORM"
+elif [ $BAT1 -gt "90" ]
+then
+    echo -e "$FG$BGICO $BATFULL $BGVAL $BAT0‧$BAT1 $SCM_NORM"
+elif [ $BAT1 -lt "90" ] && [ $BAT1 -gt "50" ]
+then
+    echo -e "$FG$BGICO $BAT50 $BGVAL $BAT0‧$BAT1 $SCM_NORM"
+elif [ $BAT1 -lt "50" ] && [ $BAT0 -gt "50" ]
+then
+    echo -e "$FG$BGICO $BAT050 $BGVAL $BAT0‧$BAT1 $SCM_NORM"
+elif [ $BAT0 -lt "50" ] && [ $BAT0 -gt "20" ]
+then
+    echo -e "$FG$BGICO $BAT20 $BGVAL $BAT0‧$BAT1 $SCM_NORM"
+elif [ $BAT0 -lt "20" ]
+then
+    echo -e "$FG$BGICO $BATCRTCL $BGVAL $BAT0‧$BAT1 $SCM_NORM"
+fi
+
