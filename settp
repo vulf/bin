@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Set Synaptics Touchpad properties
+xinput set-prop "Synaptics tm2964-001" "libinput Tapping Enabled" 1
+xinput set-prop "Synaptics tm2964-001" "libinput Natural Scrolling Enabled" 1
+xinput set-prop "Synaptics tm2964-001" "libinput Accel Speed" 1
+
+# Set IBM TrackPoint properties
+xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Natural Scrolling Enabled" 1
+xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Middle Emulation Enabled" 1
+xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 1
+

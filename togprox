@@ -1,0 +1,19 @@
+#! /usr/bin/python3
+
+import os
+import re
+
+path = "/home/pranav/.mozilla/firefox/1p2y6khd.default-release/user.js"
+read = open(path, "r")
+for t in read:
+    if re.search("5", t):
+        res = re.sub('[5]','1',t)
+        f = open(path,"w+")
+        f.write(res)
+        f.close()
+    else:
+        res = re.sub('[1]','5',t)
+        f = open(path,"w+")
+        f.write(res)
+        f.close()
+
