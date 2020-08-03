@@ -1,8 +1,7 @@
 #!/bin/bash
 
-BGICO="^b#262626^"
-BGVAL="^b#424242^"
-BGTMP="^b#000000^"
+BGICO="^b#295890^"
+BGVAL="^b#007CC3^"
 FG="^c#ffffff^"
 SCM_NORM="^d^"
 BAT0=$(cat /sys/class/power_supply/BAT0/capacity)
