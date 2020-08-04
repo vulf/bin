@@ -1,7 +1,7 @@
 #!/bin/bash
 
-BGICO="^b#295890^"
-BGVAL="^b#007CC3^"
+BGICO="^b#000000^"
+BGVAL=""
 FG="^c#ffffff^"
 SCM_NORM="^d^"
 BAT0=$(cat /sys/class/power_supply/BAT0/capacity)
@@ -17,27 +17,27 @@ BATCHARGE=""
 
 if [ $BAT1STATUS == "Charging" ] || [ $BAT0STATUS == "Charging" ]
 then
-    echo -e "$FG$BGICO $BATCHARGE $BGVAL $BAT0‧$BAT1 $SCM_NORM"
+    echo -e "$FG$BGICO $BATCHARGE $SCM_NORM $BAT0‧$BAT1"
 #    notify-send -t 10000 "Plugged in"
 elif [ $BAT1 -gt "90" ]
 then
-    echo -e "$FG$BGICO $BATFULL $BGVAL $BAT0‧$BAT1 $SCM_NORM"
+    echo -e "$FG$BGICO $BATFULL $SCM_NORM $BAT0‧$BAT1"
 elif [ $BAT1 -lt "90" ] && [ $BAT1 -gt "50" ]
 then
-    echo -e "$FG$BGICO $BAT50 $BGVAL $BAT0‧$BAT1 $SCM_NORM"
+    echo -e "$FG$BGICO $BAT50 $SCM_NORM $BAT0‧$BAT1"
 elif [ $BAT1 -lt "50" ] && [ $BAT0 -gt "50" ]
 then
-    echo -e "$FG$BGICO $BAT050 $BGVAL $BAT0‧$BAT1 $SCM_NORM"
+    echo -e "$FG$BGICO $BAT050 $SCM_NORM $BAT0‧$BAT1"
 elif [ $BAT0 -lt "50" ] && [ $BAT0 -gt "20" ]
 then
-    echo -e "$FG$BGICO $BAT20 $BGVAL $BAT0‧$BAT1 $SCM_NORM"
+    echo -e "$FG$BGICO $BAT20 $SCM_NORM $BAT0‧$BAT1"
     if [ $BAT0 -eq "49" ] || [ $BAT0 -eq "40" ] || [ $BAT0 -eq "30" ]
     then
         notify-send -t 10000 "Get ready to plug in the power adapter"
     fi
 elif [ $BAT0 -lt "20" ]
 then
-    echo -e "$FG$BGICO $BATCRTCL $BGVAL $BAT0‧$BAT1 $SCM_NORM"
+    echo -e "$FG$BGICO $BATCRTCL $SCM_NORM $BAT0‧$BAT1"
     if [ $BAT0 -eq "19" ] || [ $BAT0 -eq "15" ] || [ $BAT0 -eq "10" ]
     then
         notify-send -u critical -t 10000 "Battery low, Plug in!"

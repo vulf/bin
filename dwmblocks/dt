@@ -1,11 +1,11 @@
 #! /bin/bash
 
-BGICO="^b#295890^"
-BGVAL="^b#007CC3^"
+BGICO="^b#000000^"
+BGVAL=""
 FG="^c#ffffff^"
 SCM_NORM="^d^"
 
 CAL=""
 DATE=$(date +"%a, %d %b" | tr '[:upper:]' '[:lower:]')
 
-echo -e "$FG$BGICO $CAL $BGVAL $DATE $SCM_NORM"
+echo -e "$FG$BGICO $CAL $SCM_NORM $DATE"
