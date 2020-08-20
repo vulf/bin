@@ -19,16 +19,16 @@ if [ $BAT1STATUS == "Charging" ] || [ $BAT0STATUS == "Charging" ]
 then
     echo -e "$FG$BGICO $BATCHARGE $SCM_NORM $BAT0‧$BAT1"
 #    notify-send -t 10000 "Plugged in"
-elif [ $BAT1 -gt "90" ]
+elif [ $BAT1 -ge "90" ]
 then
     echo -e "$FG$BGICO $BATFULL $SCM_NORM $BAT0‧$BAT1"
-elif [ $BAT1 -lt "90" ] && [ $BAT1 -gt "50" ]
+elif [ $BAT1 -lt "90" ] && [ $BAT1 -ge "50" ]
 then
     echo -e "$FG$BGICO $BAT50 $SCM_NORM $BAT0‧$BAT1"
-elif [ $BAT1 -lt "50" ] && [ $BAT0 -gt "50" ]
+elif [ $BAT1 -lt "50" ] && [ $BAT0 -ge "50" ]
 then
     echo -e "$FG$BGICO $BAT050 $SCM_NORM $BAT0‧$BAT1"
-elif [ $BAT0 -lt "50" ] && [ $BAT0 -gt "20" ]
+elif [ $BAT0 -lt "50" ] && [ $BAT0 -ge "20" ]
 then
     echo -e "$FG$BGICO $BAT20 $SCM_NORM $BAT0‧$BAT1"
     if [ $BAT0 -eq "49" ] || [ $BAT0 -eq "40" ] || [ $BAT0 -eq "30" ]
