@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# BASH
+cp $HOME/.bashrc $HOME/dotfiles/bash/.bashrc 
+
+# ZSH
+cp $HOME/.zshrc $HOME/dotfiles/zsh/.zshrc
+cp $HOME/.zshenv $HOME/dotfiles/zsh/.zshenv
+
+# WM
+cp $HOME/.dwm/autostart.sh $HOME/dotfiles/wm/dwm/.dwm/autostart.sh
+
+# NVIM
+cp $HOME/.config/nvim/init.vim $HOME/dotfiles/.config/nvim/init.vim
