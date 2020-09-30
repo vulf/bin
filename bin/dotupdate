@@ -10,5 +10,6 @@ cp $HOME/.zshenv $HOME/dotfiles/zsh/.zshenv
 # WM
 cp $HOME/.dwm/autostart.sh $HOME/dotfiles/wm/dwm/.dwm/autostart.sh
 
-# NVIM
+# .config
 cp $HOME/.config/nvim/init.vim $HOME/dotfiles/.config/nvim/init.vim
+cp $HOME/.config/dunst/dunstrc $HOME/dotfiles/.config/dunst/dunstrc
