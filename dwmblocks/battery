@@ -42,5 +42,9 @@ then
     then
         notify-send -u critical -t 10000 "Battery low, Plug in!"
     fi
+elif [ $BAT0 -eq "100" ] && [ $BAT1 -eq "100" ] && [ $BAT1STATUS == "Charging" ]
+then
+    echo -e "$FG$BGICO $BATCHARGE $SCM_NORM $BAT0‧$BAT1"
+    notify-send -t 10000 "Fully charged"
 fi
 
