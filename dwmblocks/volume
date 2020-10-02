@@ -1,6 +1,6 @@
 #! /bin/bash
 
-BGICO="^b#000000^"
+BGICO="^b#8c8c8c^"
 BGVAL=""
 FG="^c#ffffff^"
 SCM_NORM="^d^"
@@ -12,7 +12,9 @@ MUTE=$(pactl list sinks | grep Mute | cut -d ':' -f 2 | sed 's/^ * //g')
 
 if [ $MUTE == "yes" ]
 then
-    echo -e "$FG$BGICO $VOLMUTE $SCM_NORM muted"
+    #echo -e "$FG$BGICO $VOLMUTE $SCM_NORM muted"
+    echo -e "$VOLMUTE $FG$BGICO muted $SCM_NORM"
 else
-    echo -e "$FG$BGICO $VOLNORM $SCM_NORM $VOLUME"
+    #echo -e "$FG$BGICO $VOLNORM $SCM_NORM $VOLUME"
+    echo -e "$VOLNORM $FG$BGICO $VOLUME $SCM_NORM"
 fi
