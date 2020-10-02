@@ -1,6 +1,6 @@
 #! /bin/bash
 
-BGICO="^b#8c8c8c^"
+BGICO="^b#2b2b2b^"
 BGVAL=""
 FG="^c#ffffff^"
 SCM_NORM="^d^"
@@ -8,5 +8,4 @@ SCM_NORM="^d^"
 CLOCK=""
 TIME=$(date +"%I:%M %P")
 
-#echo -e "$FG$BGICO $CLOCK $SCM_NORM $TIME"
-echo -e " $CLOCK $FG$BGICO $TIME $SCM_NORM"
+echo -e "$FG$BGICO $CLOCK $SCM_NORM $TIME"

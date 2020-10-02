@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BGICO="^b#8c8c8c^"
+BGICO="^b#2b2b2b^"
 BGVAL=""
 FG="^c#ffffff^"
 SCM_NORM="^d^"
@@ -17,41 +17,34 @@ BATCHARGE=""
 
 if [ $BAT1STATUS == "Charging" ] || [ $BAT0STATUS == "Charging" ]
 then
-    #echo -e "$FG$BGICO $BATCHARGE $SCM_NORM $BAT0‧$BAT1"
-    echo -e "$BATCHARGE $FG$BGICO $BAT0‧$BAT1 $SCM_NORM"
+    echo -e "$FG$BGICO $BATCHARGE $SCM_NORM $BAT0‧$BAT1"
 #    notify-send -t 10000 "Plugged in"
 elif [ $BAT1 -ge "90" ]
 then
-    #echo -e "$FG$BGICO $BATFULL $SCM_NORM $BAT0‧$BAT1"
-    echo -e "$BATFULL $FG$BGICO $BAT0‧$BAT1 $SCM_NORM"
+    echo -e "$FG$BGICO $BATFULL $SCM_NORM $BAT0‧$BAT1"
 elif [ $BAT1 -lt "90" ] && [ $BAT1 -ge "50" ]
 then
-    #echo -e "$FG$BGICO $BAT50 $SCM_NORM $BAT0‧$BAT1"
-    echo -e "$BAT50 $FG$BGICO $BAT0‧$BAT1 $SCM_NORM"
+    echo -e "$FG$BGICO $BAT50 $SCM_NORM $BAT0‧$BAT1"
 elif [ $BAT1 -lt "50" ] && [ $BAT0 -ge "50" ]
 then
-    #echo -e "$FG$BGICO $BAT050 $SCM_NORM $BAT0‧$BAT1"
-    echo -e "$BAT050 $FG$BGICO $BAT0‧$BAT1 $SCM_NORM"
+    echo -e "$FG$BGICO $BAT050 $SCM_NORM $BAT0‧$BAT1"
 elif [ $BAT0 -lt "50" ] && [ $BAT0 -ge "20" ]
 then
-    #echo -e "$FG$BGICO $BAT20 $SCM_NORM $BAT0‧$BAT1"
-    echo -e "$BAT20 $FG$BGICO $BAT0‧$BAT1 $SCM_NORM"
+    echo -e "$FG$BGICO $BAT20 $SCM_NORM $BAT0‧$BAT1"
     if [ $BAT0 -eq "49" ] || [ $BAT0 -eq "40" ] || [ $BAT0 -eq "30" ]
     then
         notify-send -t 10000 "Get ready to plug in the power adapter"
     fi
 elif [ $BAT0 -lt "20" ]
 then
-    #echo -e "$FG$BGICO $BATCRTCL $SCM_NORM $BAT0‧$BAT1"
-    echo -e "$BATCRTCL $FG$BGICO $BAT0‧$BAT1 $SCM_NORM"
+    echo -e "$FG$BGICO $BATCRTCL $SCM_NORM $BAT0‧$BAT1"
     if [ $BAT0 -eq "19" ] || [ $BAT0 -eq "15" ] || [ $BAT0 -eq "10" ]
     then
         notify-send -u critical -t 10000 "Battery low, Plug in!"
     fi
 elif [ $BAT0 -eq "100" ] && [ $BAT1 -eq "100" ] && [ $BAT1STATUS == "Charging" ]
 then
-    #echo -e "$FG$BGICO $BATCHARGE $SCM_NORM $BAT0‧$BAT1"
-    echo -e "$BATCHARGE $FG$BGICO $BAT0‧$BAT1 $SCM_NORM"
+    echo -e "$FG$BGICO $BATCHARGE $SCM_NORM $BAT0‧$BAT1"
     notify-send -t 10000 "Fully charged"
 fi
 
