@@ -8,4 +8,4 @@ SCM_NORM="^d^"
 CLOCK=""
 TIME=$(date +"%I:%M %P")
 
-echo -e "$FG$BGICO $CLOCK $SCM_NORM $TIME"
+echo -e " $FG$BGICO $CLOCK $SCM_NORM $TIME"
