@@ -1,19 +1,15 @@
 #!/bin/bash
 
-FILE="/home/pranav/Downloads/vulf.ovpn"
-OUT_FILE="/home/pranav/.htbtun_out"
+FILE="OVPN location"
+OUT_FILE="$HOME/.htbtun_out"
 
 openvpn $FILE > $OUT_FILE &
 sleep 8
-BOOL=$(grep 'ERROR' $OUT_FILE)
-# echo $BOOL
-if [[ "$BOOL" ]]; then
+BOOL=$(grep -i 'Initialization Sequence Completed' $OUT_FILE)
+#echo $BOOL
+if [[ ! $BOOL ]]; then
     echo "Could not connect to HTB"
-    echo "Log file: $HOME/.htbtun_out"
+    echo "Log file: $OUT_FILE"
 else
     echo "Connected"
 fi
-
-
-
-
