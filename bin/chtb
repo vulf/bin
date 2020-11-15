@@ -1,4 +1,5 @@
 #!/bin/bash
+# Author: Pranav Sivvam
 
 FILE="OVPN location"
 OUT_FILE="$HOME/.htbtun_out"
