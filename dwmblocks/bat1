@@ -15,7 +15,13 @@ STATUS=$(cat /sys/class/power_supply/BAT1/status)
 
 if [ $STATUS = "Charging" ]
 then
-    echo -e "$FG$BGICO $BATCHARGE $SCM_NORM $BAT"
+    if [ $BAT -eq "99" ]
+    then
+        echo -e "$FG$BGICO $BATCHARGE $SCM_NORM $BAT"
+        dunstify -u "low" "Fully charged"
+    else    
+        echo -e "$FG$BGICO $BATCHARGE $SCM_NORM $BAT"
+    fi
 elif [ $BAT -ge "90" ]
 then
     echo -e "$FG$BGICO $BATFULL $SCM_NORM $BAT"
