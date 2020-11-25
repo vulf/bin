@@ -5,7 +5,8 @@
 #
 # Note:
 #   MEMBERS_FILE must contain phone numbers including the country code, e.g, +91xxxxxxxxxx, +97xxxxxxxxxx
-#   phone numbers which successfully received the message(s) will be appended to 'sent.out' in the current directory. if 'sent.out' does not exist, it will be created automatically
+#   phone numbers which successfully received the message(s) will be appended to 'sent.out' in the current directory.
+#   if 'sent.out' does not exist, it will be created automatically.
 #
 # Bugs:
 #   fix handling of non whatsapp numbers
