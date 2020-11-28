@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 # Whatsapp bulk send
 # Author: Pranav Sivvam
 # Date: 9-11-20
@@ -21,15 +21,16 @@ from selenium.webdriver.common.alert import Alert
 import time
 import sys
 
-if len(sys.argv) < 2:
-    print("Usage: ./bulk.py MEMBERS_FILE")
+if len(sys.argv) < 3:
+    print("Usage: ./wamsg.py MEMBERS_FILE MSG_FILE")
     sys.exit(0)
 
-# get file
-mem_file = sys.argv[1]
+# get files
+MEM_FILE = sys.argv[1]
+MSG_FILE = sys.argv[2]
 
 TARGET = list()
-with open(mem_file, 'r') as f:
+with open(MEM_FILE, 'r') as f:
     for line in f:
         TARGET.append(line)
 
@@ -38,24 +39,28 @@ DRV_PATH = 'chromedriver'
 
 driver = webdriver.Chrome(DRV_PATH)
 
-# newline
 def nextLine():
     return str(ActionChains(driver).key_down(Keys.SHIFT).key_down(Keys.ENTER).key_up(Keys.ENTER).key_up(Keys.SHIFT).perform())
 
-# enter your message here
-MSG1 = "etaoin"
-MSG2 = "shrldu"
-MSGN = ":D"
+MSG = ''
 
-for i in range( len(TARGET) ):
-    TARGET[i] = TARGET[i].replace(' ','').strip()
+with open(MSG_FILE, 'r') as f:
+    for line in f:
+        MSG += line
+
+# enter numbers with country code, e.g +917283928372
+for i in range(len(TARGET)):
+        if TARGET[i].startswith('+91'):
+            TARGET[i] = TARGET[i][3:]
+        TARGET[i] = TARGET[i].replace(' ','')
 
 with open('sent.out', 'a') as f:
     for num in TARGET:
-        print(f'sending message to {num}..')
+        num = '+91' + num
+        print(num)
         driver.get('https://web.whatsapp.com/send?phone='+ num)
         try:
-           WebDriverWait(driver, 5).until (EC.alert_is_present())
+           WebDriverWait(driver, 10).until (EC.alert_is_present())
            alert = driver.switch_to.alert
            alert.accept()
            print("alert is present")
@@ -64,15 +69,15 @@ with open('sent.out', 'a') as f:
         time.sleep(6)
         inp = driver.find_element_by_xpath('//div[@spellcheck="true"][@contenteditable="true"][@dir="ltr"]')
         ActionChains(driver).move_to_element(inp).click(inp).perform()
-        inp.send_keys(MSG1)
-        nextLine()
-        inp.send_keys(MSG2)
-        nextLine()
-        nextLine()
-        inp.send_keys(MSGN)
+        for i in range( len(MSG) ):
+            if MSG[i] == '\n':
+                nextLine()    
+            else:
+                inp.send_keys(MSG[i])
+
         inp.send_keys('\n')
-        f.write(num + '\n')
-        
+        f.write(num)
+
 print('Completed execution. Press enter to exit script')
 input()
 driver.quit()
