@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Modify entries in your /etc/hosts file
+#
+# Usage:
+# 	$ hmod HOSTNAME NEW-IP
+
+HOSTNAME=$1
+IP=$2
+HF="/etc/hosts"
+
+FOUND=`sed -n "s/\(^[[:digit:]]\{1,3\}.*\t\).*\($HOSTNAME$\)/\1/p" $HF | head -n 1`
+FOUND=`echo $FOUND | xargs`
+sed -i.bak -e "s/$FOUND/$IP/" $HF
+printf "done."
+
+# Optional
+# Comment out, if not needed
+less $HF
