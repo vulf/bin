@@ -20,8 +20,6 @@ subdomain() {
 
 # change ip of existing host
 modify() {
-    #FOUND=`sed -r -n "s/(^[[:digit:]]{1,3}.*t).*($2.*)/\1/p" $HF | head -n 1`
-    #FOUND=`sed -n "s/\(^[[:digit:]]\{1,3\}.*\t\).*\($2.*\)/\1/p" $HF | head -n 1`
     FOUND=`sed -n "s/\(^[[:digit:]]\{1,3\}.*\t\).*\($2.*$\)/\1/p" $HF | head -n 1`
     FOUND=`echo $FOUND | xargs`
     if [ -z "$FOUND" ]; then
