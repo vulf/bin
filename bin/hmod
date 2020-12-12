@@ -79,6 +79,3 @@ case "$CMD" in
 esac
 
 less $HF
-#FOUND=`sed -n "s/\(^[[:digit:]]\{1,3\}.*\t\).*\($HNAME$\)/\1/p" $HF | head -n 1`
-#FOUND=`echo $FOUND | xargs`
-#sed -i.bak -e "s/$FOUND/$IP/" $HF
