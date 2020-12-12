@@ -1,18 +1,84 @@
 #!/usr/bin/env bash
 # Modify entries in your /etc/hosts file
-#
-# Usage:
-# 	$ hmod HOSTNAME NEW-IP
+# Author: Pranav Sivvam
 
-HOSTNAME=$1
-IP=$2
+
 HF="/etc/hosts"
+CMD="$1"
+shift
 
-FOUND=`sed -n "s/\(^[[:digit:]]\{1,3\}.*\t\).*\($HOSTNAME$\)/\1/p" $HF | head -n 1`
-FOUND=`echo $FOUND | xargs`
-sed -i.bak -e "s/$FOUND/$IP/" $HF
-printf "done."
+usage() {
+    printf >&2 "Usage: hmod COMMAND -h HOSTNAME -i IP [-f HOSTS_FILE]\n"
+    exit
+}
 
-# Optional
-# Comment out, if not needed
+# append subdomain to entry, based on ip
+subdomain() {
+    sed -i.bak -e "/$1/ s/$/\t$2/g" $HF
+    printf "added subdomain '$2'"
+}
+
+# change ip of existing host
+modify() {
+    #FOUND=`sed -r -n "s/(^[[:digit:]]{1,3}.*t).*($2.*)/\1/p" $HF | head -n 1`
+    #FOUND=`sed -n "s/\(^[[:digit:]]\{1,3\}.*\t\).*\($2.*\)/\1/p" $HF | head -n 1`
+    FOUND=`sed -n "s/\(^[[:digit:]]\{1,3\}.*\t\).*\($2.*$\)/\1/p" $HF | head -n 1`
+    FOUND=`echo $FOUND | xargs`
+    if [ -z "$FOUND" ]; then
+        printf "could not find match\n"
+        printf "$FOUND"
+        exit
+    fi
+    sed -i.bak -e "s/$FOUND/$1/" $HF
+}
+
+# append new entry
+newhost() {
+    printf "$1\t$2\n" >> $HF
+    printf "Host appended\n"
+}
+
+while getopts ":h:i:f:" o; do
+    case "${o}" in
+        h)
+            HNAME=${OPTARG}
+            ;;
+        i)
+            IP=${OPTARG}
+            ;;
+        f)
+            HF=${OPTARG}
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+
+# if $HF is not writable by user
+if [ ! -w "$HF" ]; then
+    printf >&2 "Cannot write to '$HF': Permission denied\n"
+    exit
+fi
+
+if [ "$CMD" != 'sub' ] && [ "$CMD" != 'mod' ] && [ "$CMD" != 'new' ]; then
+    usage
+    exit
+fi
+
+case "$CMD" in
+    sub)
+        subdomain $IP $HNAME
+        ;;
+    mod)
+        modify $IP $HNAME
+        ;;
+    new)
+        newhost $IP $HNAME
+        ;;
+esac
+
 less $HF
+#FOUND=`sed -n "s/\(^[[:digit:]]\{1,3\}.*\t\).*\($HNAME$\)/\1/p" $HF | head -n 1`
+#FOUND=`echo $FOUND | xargs`
+#sed -i.bak -e "s/$FOUND/$IP/" $HF
