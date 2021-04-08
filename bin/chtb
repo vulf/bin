@@ -1,9 +1,22 @@
 #!/bin/bash
-# Author: Pranav Sivvam
+# Author: Vulf
+USER_HOME=`echo ~$(logname)`
+FILE="$USER_HOME/Downloads/vpn/vulf.ovpn"
+OUT_FILE="$USER_HOME/.htbtun_out"
 
-FILE="OVPN location"
-OUT_FILE="$HOME/.htbtun_out"
+while true;do
+	read -p "Restart NetworkManager? [y/N]: " ch
+	if [[ ! $ch ]]; then
+		break
+	elif [[ $ch == 'y' || $ch == 'Y' ]]; then
+		systemctl restart NetworkManager
+		break
+	elif [[ $ch == 'n' || $ch == 'N' ]]; then
+		break
+	fi
+done
 
+killall openvpn 2>/dev/null
 openvpn $FILE > $OUT_FILE &
 sleep 8
 BOOL=$(grep -i 'Initialization Sequence Completed' $OUT_FILE)
