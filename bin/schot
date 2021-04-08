@@ -2,8 +2,8 @@
 
 if [ $# -eq 0 ] 
 then
-    maim ~/images/ss/$(date +%s).png
+    maim --hidecursor ~/images/ss/$(date +%s).png
 elif [ $1 == '-s' ]
 then
-    maim -s ~/images/ss/$(date +%s).png
+    maim --hidecursor -s ~/images/ss/$(date +%s).png
 fi
