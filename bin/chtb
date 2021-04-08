@@ -19,7 +19,7 @@ done
 killall openvpn 2>/dev/null
 openvpn $FILE > $OUT_FILE &
 sleep 8
-BOOL=$(grep -i 'Initialization Sequence Completed' $OUT_FILE)
+BOOL=$(grep -a -i 'Initialization Sequence Completed' $OUT_FILE)
 #echo $BOOL
 if [[ ! $BOOL ]]; then
     echo "Could not connect to HTB"
