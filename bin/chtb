@@ -1,6 +1,6 @@
 #!/bin/bash
 # Author: Vulf
-USER_HOME=`echo ~$(logname)`
+USER_HOME=`eval echo ~$(logname)`
 FILE="$USER_HOME/Downloads/vpn/vulf.ovpn"
 OUT_FILE="$USER_HOME/.htbtun_out"
 
